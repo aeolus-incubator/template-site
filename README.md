@@ -1,4 +1,4 @@
 template-site
 =============
 
-An application to house shared templaes for building virtual machine images
+An application to house shared templates for building virtual machine images
