@@ -9,6 +9,7 @@ unless Kernel.respond_to?(:require_relative)
 end
 
 require 'bundler/setup'
+require 'cgi'
 Bundler.require(:web)
 require_relative 'configuration'
 require_relative 'helpers'
@@ -32,7 +33,7 @@ class AppBase < Sinatra::Base
   helpers Sinatra::ViewHelpers
   register Sinatra::Partial
 
-  set :current_revision, %x{git rev-parse HEAD} 
+  set :current_revision, %x{git rev-parse HEAD}
 
   set(:auth) do |bool|
     condition do
@@ -66,7 +67,7 @@ class Application < AppBase
   get '/' do
     puts "DEBUG: #{session.inspect}" unless ENV['DEBUG_IT'].nil?
     # Default will be 5
-#    @last_inserted = 
+#    @last_inserted =
 #    # Default will be 5
 #    @most_requested = Entry.popular
     haml(:index, :locals => {:last_inserted=>Entry::last_inserts(10),
@@ -103,7 +104,7 @@ class Application < AppBase
       flash[:error] ="Got an error trying to save the article #{e.to_s}"
      redirect to("/")
     end
-    
+
     flash[:notice] = "Your entry got added"
     redirect to("/entry/#{entry.name}")
   end
@@ -128,7 +129,7 @@ class Application < AppBase
   put '/entry', :auth=>true do
     current_user = User::first(:id=>session[:user_id])
     entry = current_user.entries.first(:name=>params[:uuid])
-    entry.update(:name=>params[:name], 
+    entry.update(:name=>params[:name],
                   :"deployable.content"=>params[:deployable],
                   :"image.content"=>params[:image]
                 )
@@ -211,8 +212,8 @@ class Api < Sinatra::Base
   get '/search' do
     halt 404 if params[:q].nil?
     results=Entry.search(params[:q].split(/\s?,\s?/).map(&:capitalize))
-    results.to_json(:relationships=> 
-                    {:image=>{:include=>[:content] },
+    results.to_json(:relationships=> {
+                    :image=>{:include=>[:content] },
                     :deployable=>{:include=>[:content] } }
                     )
   end

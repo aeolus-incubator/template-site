@@ -67,15 +67,13 @@
                   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0)"}
                     Sign In
                     %strong.caret
-                  .dropdown-menu{:style => "padding: 15px; padding-bottom: 0px;"}
-                    #login_bottons
-                      %ul
-                        %li
-                          %a{:href=>"/authenticate/auth/github"} Github
-                        %li
-                          %a{:href=>"/authenticate/auth/twitter"} Twitter
-                        %li
-                          %a{:href=>"/authenticate/auth/open_id"} OpenID
+                  %ul.dropdown-menu{:style => "padding: 15px; padding-bottom: 0px;"}
+                    %li
+                      %a{:href=>"/authenticate/auth/github"} Github
+                    %li
+                      %a{:href=>"/authenticate/auth/twitter"} Twitter
+                    %li
+                      %a{:href=>"/authenticate/auth/open_id"} OpenID
 
     .container
       =yield

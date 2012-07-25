@@ -21,10 +21,10 @@
   Deployable template
 
 %pre
-  %code= entry.deployable.content
+  %code= CGI.escapeHTML(entry.deployable.content)
 
 %h3
   Image template
 
 %pre
-  %code= entry.image.content
+  %code= CGI.escapeHTML(entry.image.content)
