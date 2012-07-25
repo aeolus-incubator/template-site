@@ -57,7 +57,7 @@
                 %li
                   %a{:href=>"javascript:void(0)"}
                     %i.icon-user.icon-white
-                    Welcome back, test
+                    Welcome back, #{session[:user_name]}
                 %li.divider-vertical
                 %li
                   %a{:href=>"/authenticate/sign_out", :onClick=>"var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;f.submit();return false;"} Sign out
