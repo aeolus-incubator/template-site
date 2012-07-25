@@ -1,0 +1,29 @@
+/
+  =entry.deployable.inspect
+
+%form.well{:method=>"POST", :"accept-charset"=>"UTF-8", :enctype=>"multipart/form-data", :action=>"/entry"}
+  %input{ :type=>"hidden", :name=>"uuid", :value=>(entry.uuid ||"")}
+  - if entry.exists?
+    %input{ :type => :hidden, :name => '_method', :value => :put}
+
+  .control_group
+    %label{:class=>"control-label", :for=>"deployable_xml"}
+      Template deployable
+    .controls
+      %textarea.field.span6{:id=>"deployable_xml", :name=>"deployable",:rows=>"12"}
+        = (entry.deployable.content || "")
+  .control_group
+    %label{:class=>"control-label", :for=>"image_xml"}
+      Image deployable
+    .controls
+      %textarea.field.span6{:id=>"image_xml", :name=>"image",:rows=>"12"}
+        = (entry.image.content || "")
+  .control_group
+    %label{:class=>"control-label", :for=>"tag_list"}
+      Tags:
+    .controls
+      %input.field.span6{:type=>"text", :id=>"tag_list", :name=>"tag_list",:value=>(entry.tag_list || "")}
+
+  .form-actions
+    %button.btn.btn-primary{:type => "submit"} Submit
+    %button.btn Cancel

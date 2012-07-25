@@ -1,0 +1,30 @@
+-@action=File.basename(__FILE__,".haml")
+%h1
+  i'm the #index action!
+  =@action
+
+%hr/
+/
+  =flash.class
+
+.row
+  .span5
+    %h3
+      Latest entries
+
+    - unless last_inserted.nil?
+      %ul
+        - last_inserted.each do |entry|
+          %li
+            %span
+              = linkify_entry entry
+            %span
+              = download_element(entry,"image")
+            %span
+              = download_element(entry,"deployable")
+
+  .span5
+    %h3
+      Most downloaded entries
+  .span2{:style=>"background: red"}
+    Tre

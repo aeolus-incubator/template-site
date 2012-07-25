@@ -1,0 +1,16 @@
+# Sinatra
+/pkg
+/doc/api
+/Gemfile.lock
+/*.sqlite3
+# Emacs
+auto-save-list
+tramp
+.\#*
+
+*.swp
+
+# Org-mode
+.org-id-locations
+*_archive
+

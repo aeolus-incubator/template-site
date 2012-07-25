@@ -1,0 +1,8 @@
+-@action = "new entry"
+
+%h2
+  New Entry
+
+=partial(:"_tags")
+
+=partial(:"_form", :locals=>{:entry=>entry})

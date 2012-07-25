@@ -1,0 +1,30 @@
+%h2#title
+  #{entry.name}
+
+-unless current_user.nil?
+  /
+    I am here!
+  -if current_user.is_owner?(entry.uuid)
+    %span
+      %a{:href=>"/entry/#{entry.name}/edit"}
+        %i.icon-edit
+        %button.btn
+          Edit
+
+
+%h3
+  Tags
+%span.tag_list
+  = entry.tag_list
+
+%h3
+  Deployable template
+
+%pre
+  %code= entry.deployable.content
+
+%h3
+  Image template
+
+%pre
+  %code= entry.image.content
