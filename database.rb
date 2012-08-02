@@ -90,7 +90,8 @@ class Entry
   end
 
   def self.search(*tags)
-    nil unless tags.empty?
+    tags.flatten!
+    nil unless tags.empty? or !(tags.kind_of?(Array))
     all(:"entry_tags.tag.name"=>tags,:order=> [ :rating.desc ] )
   end
 
