@@ -12,6 +12,8 @@ group :database do
   gem 'dm-timestamps'
   gem 'dm-mysql-adapter'
   gem 'dm-sqlite-adapter'
+  gem 'oj'
+  gem 'dm-serializer'
 end
 
 group :web do
