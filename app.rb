@@ -212,7 +212,7 @@ class Api < Sinatra::Base
   get '/search' do
     halt 404 if params[:q].nil?
     results=Entry.search(params[:q].split(/\s?,\s?/).map(&:capitalize).to_s)
-    puts result.inspect
+    puts results.inspect
     results.to_json(:relationships=> {
                     :image=>{:include=>[:content] },
                     :deployable=>{:include=>[:content] } }
