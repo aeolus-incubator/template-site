@@ -101,6 +101,15 @@ class Entry
 
 end
 
+class Category
+
+  property :id, Serial
+  property :name, String
+
+  def self.all_grouped_by_category
+    Entry.aggregate(:category,:all.count)
+  end
+end
 
 class Deployable
   include DataMapper::Resource
