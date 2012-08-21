@@ -2,6 +2,8 @@ require 'bundler/setup'
 Bundler.require
 require './app.rb'
 
+use Rack::Deflater
+
 map '/' do
   run Application
 end
