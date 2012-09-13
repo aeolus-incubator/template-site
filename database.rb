@@ -57,9 +57,10 @@ class Entry
   property :votes,  Integer, :default => 0
   timestamps :at
 
+  has 1, :category
   has n, :comments
   has 1, :deployable
-  has 1, :image
+  has n, :image
   belongs_to :user
 
   has n, :entry_tags
@@ -102,9 +103,12 @@ class Entry
 end
 
 class Category
+  include DataMapper::Resource
 
   property :id, Serial
   property :name, String
+
+  has n, :entries, :through => Resource
 
   def self.all_grouped_by_category
     Entry.aggregate(:category,:all.count)
@@ -192,6 +196,6 @@ end
 # End
 
 DataMapper.finalize
-DataMapper.auto_migrate! unless DataMapper.repository(:default).adapter
-                                  .storage_exists?('authentications')
+DataMapper.auto_migrate! unless DataMapper.repository(:default
+                                ).adapter.storage_exists?('authentications')
 DataMapper.auto_upgrade!
