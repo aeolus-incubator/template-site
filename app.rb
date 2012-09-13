@@ -206,7 +206,7 @@ end
 class Api < Sinatra::Base
 
   get '/' do
-    "I was too lazy for this...Nothing here yet!"
+    halt 501,"I was too lazy for this...Nothing here yet!"
   end
 
   get '/search' do
