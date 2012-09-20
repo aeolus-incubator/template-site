@@ -101,7 +101,7 @@ class Application < AppBase
       puts "[DEBUG] Your entry wasn't saved: #{entry.errors.values.join(', ')}"
       flash[:error] = "Your entry wasn't saved<BR/>#{entry.errors.values.join(', ')} ";
     rescue StandardError => e
-      flash[:error] ="Got an error trying to save the article #{e.to_s}"
+      flash[:error] ="Got an error trying to save the entry #{e.to_s}"
      redirect to("/")
     end
 
